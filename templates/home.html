@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<a href="{{ url_for('changepass') }}">Change Password</a>
+
+<h1 id="myHeader">The Boston Marathon </h1>
+
+<h2 id="underHeader"> Boston Strong </h2>
+
+<!-- link an image from the images folder -->
+<img alt="Boston Marathon Finish Line" src="{{ url_for('static', filename='images/boston_finish.jpg') }}">
+
+<p> The Boston Marathon is one of the most historic and well known marathons in the world. <p>
+<p> Please use the links below to learn more. <p>
+
+<ul>
+    <!-- use an unordered list to create links to other pages -->
+    <li><a href="{{ url_for('boston_marathon_history') }}">History behind the Marathon</a></li>
+    <li><a href="{{ url_for('boston_marathon_winners') }}">Top results from the 2019 Boston Marathon</a></li>
+</ul>
+
+<!-- call from .py file -->
+<p> {{ datetime }} <p>
+
+
+{% endblock %}
