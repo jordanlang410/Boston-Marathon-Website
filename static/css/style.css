@@ -1,0 +1,98 @@
+body{
+    background:darkblue;
+     }
+
+tr:nth-child(even) {
+    background-color: #e5e5e5
+    }
+
+.table_header {
+    text-align: left;
+    }
+
+.table_cell {
+    padding: 4px;
+    font-size: 12px;
+    }
+
+.table {
+    margin-top: -20px;
+    background-color: #f5f5f5f5;
+    }
+
+h1 {
+    font-family: "Arial Black", "Arial Bold"
+    }
+
+h3 {
+    font-family: "Arial Black", "Arial Bold"
+    }
+
+p {
+    font-family: Arial;
+    font-size: 14px;
+    }
+
+ol {
+    margin-top: -20px;
+    display: inline-block;
+    font-size: 16px;
+    font-family: Arial;
+    padding: 5px 10px;
+    }
+
+li a {
+    display: inline-block;
+    font-size: 16px;
+    font-family: Arial;
+    background: blue;
+    color: yellow;
+    padding: 5px 10px;
+}
+
+li a:visited {
+    color: yellow;
+}
+
+#center {
+    margin: auto;
+    width: 740px;
+    padding: 1em;
+    background: white;   
+}
+
+#myHeader {
+    background-color: yellow;
+    color: blue;
+    padding: 40px;
+    text-align: center;
+}
+
+#underHeader {
+    text-align: center;
+    margin-top: -50px;
+}
+
+#Lawrence{
+    border-radius: 50%;
+    width: 400px;
+    margin-right: 20px;
+    margin-top: -150px;
+}
+
+#Firstmarathon {
+    margin-right: 20px;
+    margin-bottom: -20px;
+    height: 170px;   
+}
+
+#Heartbreak {
+    margin-left: 20px;
+    width: 300px;
+    margin-top: -170px;
+}
+img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+}
