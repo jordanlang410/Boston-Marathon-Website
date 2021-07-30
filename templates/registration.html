@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1>Create an Account</h1>
+
+    <!-- Create Registration Form for the user -->
+    <form action="" method="post">
+        <input type = "text" name="name" placeholder = "User Name" value="{{request.form.username}}">
+	<input type="password" name = "password" placeholder = "Password" value="{{request.form.password}}">
+        </br>
+	<input type="submit" value="Register">
+    </form>
+
+    <!-- Display error message for user -->
+    <p> {{error}} </p>
+
+    <a href="{{ url_for('login') }}">If you already have a Login. Please click here.</a>
+
+
+{% endblock %}
