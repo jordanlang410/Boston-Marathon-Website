@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1 id="myHeader">The History behind the Boston Marathon</h1>
+<h2 id="underHeader"> Boston Strong </h2>
+
+<p> The first Boston Marathon was held on April 19, 1897.  John Graham, being from Boston, was the first organizer of the race.
+He was inspired after seeing the marathon event run at the 1896 Olympic Games in Athens.  Interestingly, although we are used
+to the typical marathon distance being 26.2 miles, the first Boston Marathon was measured at only 24.5 miles.  The length of
+the race was not changed to 26.2 miles until 1924.  The first winner of the Boston Marathon was  John J. McDermott with a time
+of 2:55:10.  The men's marathon world record today is 2:1:39 which was set at the 2018 Berlin Marathon by Eliud Kipchoge.  This
+significant difference in time shows how far the marathon has come in the past 100 years, but also how difficult the Boston
+Marathon is.  Famous for its "Heartbreak Hill", many who run the Boston Marathon are running it just to finish, not to break
+any records.  Heartbreak hill is famous because runners encounter it at mile 21 and its 88 feet of elevation gain in half a
+mile, concours many runners. The marathon is a tradition for the city now which will take place for many years to come.<p>
+
+
+<!-- link an image from the images folder -->
+<img id="Firstmarathon" alt="First Boston Marathon Finisher in 1897" src="{{ url_for('static', filename='images/FirstFinisher.jpg') }}">
+
+<!-- link an image from the images folder -->
+<img id="Heartbreak" alt="Heartbreak Hill" src="{{ url_for('static', filename='images/heartbreak_Hill.jpg') }}">
+
+
+<ul>
+    <!-- use an unordered list to create links to other pages -->
+    <li><a href="{{ url_for('home') }}">Boston Marathon Home Page</a></li>
+    <li><a href="{{ url_for('boston_marathon_winners') }}">Find out about some of the most famous races</a></li>
+</ul>
+
+<!-- call from .py file -->
+<p> {{ datetime }} <p>
+
+{% endblock %}
