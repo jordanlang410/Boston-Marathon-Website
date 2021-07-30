@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1>Change your Password</h1>
+
+    <!-- Create Change Password Form for the user -->
+    <form action="/changepass" method="post">
+        <input type = "text" name="userna" placeholder = "User Name" value="{{request.form.username}}">
+        <input type="password" name = "passwo" placeholder = "Password" value="{{request.form.password}}">
+        </br>
+	<input type="submit" value="Change Password">
+    </form>
+
+    <!-- Display error message for user -->
+    <p> {{error}} </p>
+
+
+{% endblock %}
