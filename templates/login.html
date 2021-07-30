@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h1>Please Login</h1>
+
+    <!-- Create Login Form for the user -->
+    <form action="/login" method="post">
+        <input type = "text" name="username" placeholder = "User Name" value="{{request.form.username}}">
+	<input type="password" name = "pass" placeholder = "Password" value="{{request.form.password}}">
+        </br>
+	<input type="submit" value="Log In">
+    </form>
+
+    <!-- Display error message for user -->
+    <p> {{error}} </p>
+
+    <a href="{{ url_for('registration') }}">If you would like to go back to the registration page. Please click here.</a>
+
+{% endblock %}
