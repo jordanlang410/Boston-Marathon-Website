@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1 id="myHeader">The Boston Marathon Winners from 2019</h1>
+<h2 id="underHeader"> Boston Strong </h2>
+
+<h3> Men's Winners <h3>
+
+<!-- use an ordered list to show the 2019 winners -->
+<table class = "table">
+    <tr class = "table_header">
+        {% for header in headings %}
+        <th class = "table_cell">{{ header }}</th>
+        {% endfor %}
+    </tr>
+    
+    {% for row in data %}
+    
+    <tr class = "table_row">
+        {% for cell in row %}
+        <td class = "table_cell">{{ cell }}</td>
+        
+        {% endfor %}
+    </tr>
+    
+    {% endfor %}
+    
+</table>
+
+<!-- link an image from the images folder -->
+<img id="Lawrence" alt="Boston Marathon Finish Line" src="{{ url_for('static', filename='images/Lawrence_Cherono.jpg') }}">
+
+
+
+<ul>
+    <!-- use an unordered list to create links to other pages -->
+    <li><a href="{{ url_for('home') }}">Boston Marathon Home Page</a></li>
+    <li><a href="{{ url_for('boston_marathon_history') }}">History behind the Marathon</a></li>
+</ul>
+
+<!-- call from .py file -->
+<p> {{ datetime }} <p>
+
+{% endblock %}
