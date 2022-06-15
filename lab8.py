@@ -1,4 +1,5 @@
 """
+This is a test
 Create a Registration and Login page for the user.
 Create a website that allows the user to navigate between 3 routes.
 These routes are home.html, boston_marathon_history.html, and boston_marathon_winners.html
@@ -11,19 +12,19 @@ from flask import Flask, render_template, request, url_for, redirect
 
 app = Flask(__name__)
 
-special_char=['$','@','#','*','!','%']
+special_char = ['$', '@', '#', '*', '!', '%']
 
-#Read in common passwords file
-with open ("CommonPassword.txt", "r") as commonpassfile:
+# Read in common passwords file
+with open("CommonPassword.txt", "r") as commonpassfile:
     reader = csv.reader(commonpassfile)
     commonpasswords = list(reader)
 
 
-@app.route("/", methods = ["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def registration():
     """Function to create the registration page for the user to create an account."""
 
-    with open ("save_users.csv", "r") as files:
+    with open("save_users.csv", "r") as files:
         # read csv file for usernames and passwords
         read = csv.reader(files)
 
@@ -41,7 +42,7 @@ def registration():
             attempted_username = request.form.get('name')
             attempted_password = request.form.get('password')
 
-            #validate all entries for username and password. Go to login page once created.
+            # validate all entries for username and password. Go to login page once created.
             if not attempted_username or not attempted_password:
                 error = "Please enter a username or password."
             elif attempted_username in usernames.keys():
@@ -64,7 +65,7 @@ def registration():
                 error = "Your password must contain a special character $,@,#,*,!,%"
 
             else:
-                #Save the username and password once they are validated.
+                # Save the username and password once they are validated.
                 file = open("save_users.csv", "a", newline='')
                 writer = csv.writer(file)
                 writer.writerow((attempted_username, attempted_password))
@@ -72,17 +73,17 @@ def registration():
 
                 return redirect(url_for('login'))
 
-        return render_template("registration.html", error = error)
+        return render_template("registration.html", error=error)
 
     except Exception as er1:
-        return render_template("registration.html", error = error)
+        return render_template("registration.html", error=error)
 
 
-@app.route("/login", methods = ["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     """Function to create the login page to allow the user to login."""
 
-    with open ("save_users.csv", "r") as files:
+    with open("save_users.csv", "r") as files:
         # read csv file for usernames and passwords
         read = csv.reader(files)
 
@@ -95,11 +96,11 @@ def login():
 
         if request.method == "POST":
 
-            #use form from login.html and store entries
+            # use form from login.html and store entries
             attempted_username = request.form.get('username')
             attempted_password = request.form.get('pass')
 
-            #validate username and password.  Login if they match
+            # validate username and password.  Login if they match
             if not attempted_username or not attempted_password:
                 error = "Please enter a username or password."
             elif attempted_username in usernames.keys():
@@ -107,35 +108,36 @@ def login():
                     return redirect(url_for('home'))
                 else:
                     # if username/pass fail, write into failed_logins file to save
-                    with open ("failed_logins.csv", "a", newline='') as file:
+                    with open("failed_logins.csv", "a", newline='') as file:
                         writer = csv.writer(file)
-                        writer.writerow((attempted_username, attempted_password, datetime.now()))
+                        writer.writerow(
+                            (attempted_username, attempted_password, datetime.now()))
                         file.close()
                         error = "Username or Password is incorrect."
 
             else:
                 # if username/pass fail, write into failed_logins file to save
-                with open ("failed_logins.csv", "a", newline='') as file:
+                with open("failed_logins.csv", "a", newline='') as file:
                     writer = csv.writer(file)
-                    writer.writerow((attempted_username, attempted_password, datetime.now()))
+                    writer.writerow(
+                        (attempted_username, attempted_password, datetime.now()))
                     file.close()
                     error = "Username or Password is incorrect."
 
-
-        return render_template("login.html", error = error)
+        return render_template("login.html", error=error)
 
     except Exception as er2:
-        return render_template("login.html", error = error)
+        return render_template("login.html", error=error)
 
 
-@app.route("/changepass", methods = ["GET", "POST"])
+@app.route("/changepass", methods=["GET", "POST"])
 def changepass():
     """
     Function to allow the user to change their password from inside the websites homepage
     if they have a proper username.
     """
 
-    with open ("save_users.csv", "r") as files:
+    with open("save_users.csv", "r") as files:
         # read csv file for usernames and passwords
         read = csv.reader(files)
 
@@ -149,7 +151,7 @@ def changepass():
 
         if request.method == "POST":
 
-            #use form from changepass.html and store entries
+            # use form from changepass.html and store entries
             attempted_username = request.form.get('userna')
             attempted_password = request.form.get('passwo')
 
@@ -177,7 +179,7 @@ def changepass():
                 writer = csv.writer(file)
                 # write in only the password the user entered
                 for key, value in usernames.items():
-                    writer.writerow([key,value])
+                    writer.writerow([key, value])
                 file.close()
 
                 return redirect(url_for('login'))
@@ -192,7 +194,8 @@ def changepass():
 def home():
     """Function to create the home.html page and display the date/time."""
 
-    return render_template("home.html", datetime = str(datetime.now()))
+    return render_template("home.html", datetime=str(datetime.now()))
+
 
 headings = ("Name", "Nationality", "Time")
 
@@ -201,20 +204,20 @@ data = (
     ("Lelisa Desisa", "Ethiopia", "2:07:59"),
     ("Kenneth Kipkemoi", "Kenya", "2:08:07"),
     ("Felix Kandie", "Kenya", "2:08:54")
-    )
+)
 
 
 @app.route("/boston_marathon_winners")
 def boston_marathon_winners():
     """Function to create the boston_marathon_winners.html page and display the date/time."""
-    return render_template("boston_marathon_winners.html",headings=headings,
-                           data=data, datetime = str(datetime.now()))
+    return render_template("boston_marathon_winners.html", headings=headings,
+                           data=data, datetime=str(datetime.now()))
 
 
 @app.route("/boston_marathon_history")
 def boston_marathon_history():
     """Function to create the boston_marathon_.html page and display the date/time."""
-    return render_template("boston_marathon_history.html", datetime = str(datetime.now()))
+    return render_template("boston_marathon_history.html", datetime=str(datetime.now()))
 
 
 if __name__ == "__main__":
